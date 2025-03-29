@@ -1,13 +1,15 @@
 <?php
 //LA CLASSE ABSTRAITE AbstractController.php
 
-abstract class AbstractController{
+abstract class AbstractController
+{
 
-    private Header $header;
-    private Footer $footer;
-    private InterfaceModel $model;
+    private ?Header $header;
+    private ?Footer $footer;
+    private ?InterfaceModel $model;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->header = new Header();
         $this->footer = new Footer();
         $this->model = new PlayerModel();
@@ -19,7 +21,8 @@ abstract class AbstractController{
      *
      * @return Header
      */
-    public function getHeader(): Header {
+    public function getHeader(): Header
+    {
         return $this->header;
     }
 
@@ -30,7 +33,8 @@ abstract class AbstractController{
      *
      * @return self
      */
-    public function setHeader(Header $header): self {
+    public function setHeader(Header $header): self
+    {
         $this->header = $header;
         return $this;
     }
@@ -40,7 +44,8 @@ abstract class AbstractController{
      *
      * @return Footer
      */
-    public function getFooter(): Footer {
+    public function getFooter(): Footer
+    {
         return $this->footer;
     }
 
@@ -51,7 +56,8 @@ abstract class AbstractController{
      *
      * @return self
      */
-    public function setFooter(Footer $footer): self {
+    public function setFooter(Footer $footer): self
+    {
         $this->footer = $footer;
         return $this;
     }
@@ -61,7 +67,8 @@ abstract class AbstractController{
      *
      * @return InterfaceModel
      */
-    public function getModel(): InterfaceModel {
+    public function getModel(): InterfaceModel
+    {
         return $this->model;
     }
 
@@ -72,10 +79,11 @@ abstract class AbstractController{
      *
      * @return self
      */
-    public function setModel(InterfaceModel $model): self {
+    public function setModel(InterfaceModel $model): self
+    {
         $this->model = $model;
         return $this;
     }
 
-    abstract public function render():void;
+    abstract public function render(): void;
 }

@@ -4,7 +4,7 @@
 class PlayerController extends AbstractController
 {
 
-    private ViewPlayer $player;
+    private ?ViewPlayer $player;
 
     public function __construct()
     {
@@ -45,21 +45,16 @@ class PlayerController extends AbstractController
      */
     public function addPlayer(): string
     {
-        if (!empty($_POST["pseudo"]) && !empty($_POST["email"]) && !empty($_POST["password"])) {
+        if (!empty($_POST["pseudo"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["score"])) {
 
-            $username = sanitize($_POST['username']);
+            $username = sanitize($_POST['pseudo']);
             $email = sanitize($_POST['email']);
             $password = sanitize($_POST['password']);
             $score = sanitize($_POST['score']);
 
             $password = password_hash($password, PASSWORD_BCRYPT);
 
-            $this->getModel()->setId(0);
-            $this->getModel()->setPseudo($username);
-            $this->getModel()->setEmail($email);
-            $this->getModel()->setPassword($password);
-            $this->getModel()->setScore($score);
-            $this->getModel()->addPlayer();
+            $this->getModel()["pseudo"]->setPseudo($username)->setEmail($email)->setPassword($password)->setScore($score);
 
             return "Ajout en cours";
         }
